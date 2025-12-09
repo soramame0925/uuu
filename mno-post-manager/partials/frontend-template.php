@@ -139,81 +139,80 @@ if ( $sale_active && $sale_price_value ) {
     $price_display_value = esc_html( $normal_price_value );
 }
 ?>
-<div class="mno-pm-article">
-    <?php if ( $gallery ) : ?>
-        <section class="mno-pm-article__section mno-pm-article__gallery" aria-label="<?php esc_attr_e( 'Gallery', 'mno-post-manager' ); ?>">
-            <div class="mno-pm-slider mno-gallery" data-mno-pm-slider data-mno-gallery-slider>
-                <div class="mno-pm-slider__track mno-gallery-track">
-                    <?php foreach ( $gallery as $image_id ) :
-                        $image_html = wp_get_attachment_image( $image_id, 'large', false, [ 'class' => 'mno-pm-slider__image' ] );
-                        if ( ! $image_html ) {
-                            continue;
-                        }
-                        ?>
-                        <figure class="mno-pm-slider__slide mno-gallery-slide">
-                            <?php echo $image_html; ?>
-                        </figure>
-                    <?php endforeach; ?>
-                </div>
-                <button
-                    type="button"
-                    class="mno-pm-slider__nav mno-gallery-arrow mno-gallery-arrow--left mno-pm-slider__nav--prev"
-                    aria-label="<?php esc_attr_e( 'Previous', 'mno-post-manager' ); ?>"
-                >&#10094;</button>
-                <button
-                    type="button"
-                    class="mno-pm-slider__nav mno-gallery-arrow mno-gallery-arrow--right mno-pm-slider__nav--next"
-                    aria-label="<?php esc_attr_e( 'Next', 'mno-post-manager' ); ?>"
-                >&#10095;</button>
-                <div class="mno-pm-slider__dots mno-gallery-dots" role="tablist" aria-label="<?php esc_attr_e( 'Gallery navigation', 'mno-post-manager' ); ?>"></div>
-            </div>
-        </section>
-    <?php endif; ?>
-
-    <?php if ( $voice_sample_markup ) : ?>
-        <section class="mno-pm-article__section mno-pm-article__voice">
-            <div class="mno-voice-sample">
-                <?php echo $voice_sample_markup; ?>
-            </div>
-        </section>
-    <?php endif; ?>
-
-    <?php if ( $price_markup || $buy_button ) : ?>
-        <section class="mno-pm-article__section mno-pm-article__purchase">
-            <?php echo $price_markup; ?>
-            <?php echo $buy_button; ?>
-        </section>
-    <?php endif; ?>
-
-    <section class="mno-pm-article__section">
-        <h2>サークル情報</h2>
-        <ul class="mno-pm-list">
-           <li><span>サークル名：</span><?php echo mno_pm_render_terms( $circle_terms ); ?></li>
-            <li><span>声優：</span><?php echo mno_pm_render_terms( $voice_terms ); ?></li>
-             <li><span>価格：</span><?php echo $price_display_value; ?></li>
-            <li><span>イラスト：</span><?php echo mno_pm_render_terms( $artist_terms ); ?></li>
-             <li><span>発売日：</span><?php echo $release_date_output; ?></li>
-             <li><span>トラック総時間：</span><?php echo $track_duration ? esc_html( $track_duration ) : '&mdash;'; ?></li>
-            <li><span>ジャンル：</span><?php echo mno_pm_render_terms( $genre_terms ); ?></li>
-        </ul>
-    </section>
-
-    <section class="mno-pm-article__section">
-        <h2>作品のみどころ</h2>
-        <?php if ( $highlights ) : ?>
-            <ul class="mno-pm-list mno-pm-list--bullets">
-                <?php foreach ( $highlights as $highlight ) : ?>
-                   <li><?php echo nl2br( wp_kses_post( $highlight ) ); ?></li>
+<?php if ( $gallery ) : ?>
+    <div class="mno-pm-article__gallery" aria-label="<?php esc_attr_e( 'Gallery', 'mno-post-manager' ); ?>">
+        <div class="mno-pm-slider mno-gallery" data-mno-pm-slider data-mno-gallery-slider>
+            <div class="mno-pm-slider__track mno-gallery-track">
+                <?php foreach ( $gallery as $image_id ) :
+                    $image_html = wp_get_attachment_image( $image_id, 'large', false, [ 'class' => 'mno-pm-slider__image' ] );
+                    if ( ! $image_html ) {
+                        continue;
+                    }
+                    ?>
+                    <figure class="mno-pm-slider__slide mno-gallery-slide">
+                        <?php echo $image_html; ?>
+                    </figure>
                 <?php endforeach; ?>
-            </ul>
-        <?php else : ?>
-            <p>&mdash;</p>
-        <?php endif; ?>
-    </section>
+            </div>
+            <button
+                type="button"
+                class="mno-pm-slider__nav mno-gallery-arrow mno-gallery-arrow--left mno-pm-slider__nav--prev"
+                aria-label="<?php esc_attr_e( 'Previous', 'mno-post-manager' ); ?>"
+            >&#10094;</button>
+            <button
+                type="button"
+                class="mno-pm-slider__nav mno-gallery-arrow mno-gallery-arrow--right mno-pm-slider__nav--next"
+                aria-label="<?php esc_attr_e( 'Next', 'mno-post-manager' ); ?>"
+            >&#10095;</button>
+            <div class="mno-pm-slider__dots mno-gallery-dots" role="tablist" aria-label="<?php esc_attr_e( 'Gallery navigation', 'mno-post-manager' ); ?>"></div>
+        </div>
+    </div>
+<?php endif; ?>
 
-    <?php if ( $data_bars || $data_voice || $data_level ) : ?>
-        <section class="mno-pm-article__section mno-data-section">
-            <h2>データ</h2>
+<?php if ( $voice_sample_markup ) : ?>
+    <div class="mno-pm-article__voice">
+        <div class="mno-voice-sample">
+            <?php echo $voice_sample_markup; ?>
+        </div>
+    </div>
+<?php endif; ?>
+
+<?php if ( $price_markup || $buy_button ) : ?>
+    <div class="mno-pm-article__purchase">
+        <?php echo $price_markup; ?>
+        <?php echo $buy_button; ?>
+    </div>
+<?php endif; ?>
+
+<div class="mno-pm-circle-info">
+    <h2>サークル情報</h2>
+    <ul class="mno-pm-list">
+       <li><span>サークル名：</span><?php echo mno_pm_render_terms( $circle_terms ); ?></li>
+        <li><span>声優：</span><?php echo mno_pm_render_terms( $voice_terms ); ?></li>
+         <li><span>価格：</span><?php echo $price_display_value; ?></li>
+        <li><span>イラスト：</span><?php echo mno_pm_render_terms( $artist_terms ); ?></li>
+         <li><span>発売日：</span><?php echo $release_date_output; ?></li>
+         <li><span>トラック総時間：</span><?php echo $track_duration ? esc_html( $track_duration ) : '&mdash;'; ?></li>
+        <li><span>ジャンル：</span><?php echo mno_pm_render_terms( $genre_terms ); ?></li>
+    </ul>
+</div>
+
+<div class="mno-pm-highlights">
+    <h2>作品のみどころ</h2>
+    <?php if ( $highlights ) : ?>
+        <ul class="mno-pm-list mno-pm-list--bullets">
+            <?php foreach ( $highlights as $highlight ) : ?>
+               <li><?php echo nl2br( wp_kses_post( $highlight ) ); ?></li>
+            <?php endforeach; ?>
+        </ul>
+    <?php else : ?>
+        <p>&mdash;</p>
+    <?php endif; ?>
+</div>
+
+<?php if ( $data_bars || $data_voice || $data_level ) : ?>
+    <div class="mno-data-section">
+        <h2>データ</h2>
 
             <?php if ( $data_bars ) :
                 $max_count = 0;
@@ -351,88 +350,88 @@ if ( $sale_active && $sale_price_value ) {
                     </div>
                 </div>
             <?php endif; ?>
-        </section>
+        </div>
     <?php endif; ?>
 
-    <section class="mno-pm-article__section">
-        <h2>トラックリスト</h2>
-        <?php if ( $track_list ) : ?>
-            <div class="mno-pm-track-list">
-                <?php foreach ( $track_list as $index => $track ) :
-                    $track_name    = isset( $track['track_name'] ) ? $track['track_name'] : '';
-                    $count         = isset( $track['ejaculation_count'] ) ? $track['ejaculation_count'] : '';
-                    $genres        = isset( $track['genres'] ) && is_array( $track['genres'] ) ? $track['genres'] : [];
-                    $duration      = isset( $track['track_duration'] ) ? $track['track_duration'] : '';
-                    $count_display = '' !== $count && null !== $count ? (string) $count : '';
-                    ?>
-                    <div class="mno-pm-track-list__item">
-                        <div class="mno-pm-track-top">
-                            <div class="mno-pm-track-number"><?php printf( esc_html__( 'トラック%d', 'mno-post-manager' ), $index + 1 ); ?></div>
+<div class="mno-pm-track-section">
+    <h2>トラックリスト</h2>
+    <?php if ( $track_list ) : ?>
+        <div class="mno-pm-track-list">
+            <?php foreach ( $track_list as $index => $track ) :
+                $track_name    = isset( $track['track_name'] ) ? $track['track_name'] : '';
+                $count         = isset( $track['ejaculation_count'] ) ? $track['ejaculation_count'] : '';
+                $genres        = isset( $track['genres'] ) && is_array( $track['genres'] ) ? $track['genres'] : [];
+                $duration      = isset( $track['track_duration'] ) ? $track['track_duration'] : '';
+                $count_display = '' !== $count && null !== $count ? (string) $count : '';
+                ?>
+                <div class="mno-pm-track-list__item">
+                    <div class="mno-pm-track-top">
+                        <div class="mno-pm-track-number"><?php printf( esc_html__( 'トラック%d', 'mno-post-manager' ), $index + 1 ); ?></div>
 
-                            <div class="mno-pm-track-name">
-                                <?php echo $track_name ? nl2br( esc_html( trim( $track_name ) ) ) : '&mdash;'; ?>
-                            </div>
-
-                            <?php if ( $duration ) : ?>
-                                <div class="mno-pm-track-duration"><?php echo '(' . esc_html( $duration ) . ')'; ?></div>
-                            <?php endif; ?>
+                        <div class="mno-pm-track-name">
+                            <?php echo $track_name ? nl2br( esc_html( trim( $track_name ) ) ) : '&mdash;'; ?>
                         </div>
-                        <p class="mno-pm-track-list__count">
-                            <span class="mno-pm-track-list__count-label"><?php esc_html_e( '射精回数', 'mno-post-manager' ); ?></span>
-                            <span class="mno-pm-track-list__count-value"><?php echo '' !== $count_display ? esc_html( $count_display ) . esc_html__( '回', 'mno-post-manager' ) : '&mdash;'; ?></span>
-                        </p>
-                        <p class="mno-pm-track-list__genres">
-                            <?php
-                            if ( ! empty( $genres ) ) {
 
-                                static $mno_pm_tag_map = null;
-
-                                if ( null === $mno_pm_tag_map ) {
-                                    $mno_pm_tag_map = [];
-                                    $all_tags = get_tags( [ 'hide_empty' => false ] );
-
-                                    if ( $all_tags && ! is_wp_error( $all_tags ) ) {
-                                        foreach ( $all_tags as $tag ) {
-                                            $mno_pm_tag_map[ $tag->name ] = $tag;
-                                        }
-                                    }
-                                }
-
-                                $output_genres = [];
-
-                                foreach ( $genres as $genre_item ) {
-                                    $parts = preg_split( '/[、,\/｜\|]+/u', $genre_item );
-
-                                    foreach ( $parts as $raw_part ) {
-                                        $label = trim( str_replace( '、', '', $raw_part ) );
-                                        if ( $label === '' ) continue;
-
-                                        if ( isset( $mno_pm_tag_map[ $label ] ) ) {
-                                            $term = $mno_pm_tag_map[ $label ];
-                                            $url  = get_tag_link( $term->term_id );
-                                            $output_genres[] =
-                                               '<a href="' . esc_url( $url ) . '" class="mno-track-genre" style="display:inline-block;">'
-                                                . esc_html( $label ) .
-                                                '</a>';
-                                        } else {
-                                            $output_genres[] = '<span class="mno-track-genre" style="display:inline-block;">' . esc_html( $label ) . '</span>';
-                                        }
-                                    }
-                                }
-
-                                echo implode( ' ', $output_genres );
-                            } else {
-                                echo '&mdash;';
-                            }
-                            ?>
-                        </p>
+                        <?php if ( $duration ) : ?>
+                            <div class="mno-pm-track-duration"><?php echo '(' . esc_html( $duration ) . ')'; ?></div>
+                        <?php endif; ?>
                     </div>
-                <?php endforeach; ?>
-            </div>
-        <?php else : ?>
-            <p>&mdash;</p>
-        <?php endif; ?>
-    </section>
+                    <p class="mno-pm-track-list__count">
+                        <span class="mno-pm-track-list__count-label"><?php esc_html_e( '射精回数', 'mno-post-manager' ); ?></span>
+                        <span class="mno-pm-track-list__count-value"><?php echo '' !== $count_display ? esc_html( $count_display ) . esc_html__( '回', 'mno-post-manager' ) : '&mdash;'; ?></span>
+                    </p>
+                    <p class="mno-pm-track-list__genres">
+                        <?php
+                        if ( ! empty( $genres ) ) {
+
+                            static $mno_pm_tag_map = null;
+
+                            if ( null === $mno_pm_tag_map ) {
+                                $mno_pm_tag_map = [];
+                                $all_tags = get_tags( [ 'hide_empty' => false ] );
+
+                                if ( $all_tags && ! is_wp_error( $all_tags ) ) {
+                                    foreach ( $all_tags as $tag ) {
+                                        $mno_pm_tag_map[ $tag->name ] = $tag;
+                                    }
+                                }
+                            }
+
+                            $output_genres = [];
+
+                            foreach ( $genres as $genre_item ) {
+                                $parts = preg_split( '/[、,\/｜\|]+/u', $genre_item );
+
+                                foreach ( $parts as $raw_part ) {
+                                    $label = trim( str_replace( '、', '', $raw_part ) );
+                                    if ( $label === '' ) continue;
+
+                                    if ( isset( $mno_pm_tag_map[ $label ] ) ) {
+                                        $term = $mno_pm_tag_map[ $label ];
+                                        $url  = get_tag_link( $term->term_id );
+                                        $output_genres[] =
+                                           '<a href="' . esc_url( $url ) . '" class="mno-track-genre" style="display:inline-block;">'
+                                            . esc_html( $label ) .
+                                            '</a>';
+                                    } else {
+                                        $output_genres[] = '<span class="mno-track-genre" style="display:inline-block;">' . esc_html( $label ) . '</span>';
+                                    }
+                                }
+                            }
+
+                            echo implode( ' ', $output_genres );
+                        } else {
+                            echo '&mdash;';
+                        }
+                        ?>
+                    </p>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    <?php else : ?>
+        <p>&mdash;</p>
+    <?php endif; ?>
+</div>
 
     <?php
     $dialogue_title   = isset( $dialogue_block['main_title'] ) ? $dialogue_block['main_title'] : '';
@@ -445,8 +444,8 @@ if ( $sale_active && $sale_price_value ) {
     $has_dialogue_block = $dialogue_title || $dialogue_image || $track_desc || $dialogue_tracks || $dialogue_heads || $dialogue_content;
     ?>
 
-    <?php if ( $has_dialogue_block ) : ?>
-        <section class="mno-dialogue-block">
+<?php if ( $has_dialogue_block ) : ?>
+    <div class="mno-dialogue-block">
             <?php if ( $dialogue_title ) : ?>
                 <h2><?php echo nl2br( esc_html( $dialogue_title ) ); ?></h2>
             <?php endif; ?>
@@ -479,22 +478,21 @@ if ( $sale_active && $sale_price_value ) {
                 </div>
             <?php endif; ?>
 
-            <?php if ( $dialogue_content ) : ?>
-               <div class="mno-dialogue-block__body mno-speech-text">
-                    <?php echo wpautop( esc_html( $dialogue_content ) ); ?>
-                </div>
-            <?php endif; ?>
-        </section>
-    <?php endif; ?>
+        <?php if ( $dialogue_content ) : ?>
+           <div class="mno-dialogue-block__body mno-speech-text">
+                <?php echo wpautop( esc_html( $dialogue_content ) ); ?>
+            </div>
+        <?php endif; ?>
+    </div>
+<?php endif; ?>
 
-    <section class="mno-pm-article__section">
-        <h2>まとめ</h2>
-        <ul class="mno-pm-list">
-            <li><span>トラック時間：</span><?php echo $track_duration ? esc_html( $track_duration ) : '&mdash;'; ?></li>
-            <li><span>声優：</span><?php echo mno_pm_render_terms( $voice_terms ); ?></li>
-            <li><span>ジャンル：</span><?php echo mno_pm_render_terms( $genre_terms ); ?></li>
-            <li><span>サークル名：</span><?php echo mno_pm_render_terms( $circle_terms ); ?></li>
-        </ul>
-        <?php echo $buy_button; ?>
-    </section>
+<div class="mno-pm-summary">
+    <h2>まとめ</h2>
+    <ul class="mno-pm-list">
+        <li><span>トラック時間：</span><?php echo $track_duration ? esc_html( $track_duration ) : '&mdash;'; ?></li>
+        <li><span>声優：</span><?php echo mno_pm_render_terms( $voice_terms ); ?></li>
+        <li><span>ジャンル：</span><?php echo mno_pm_render_terms( $genre_terms ); ?></li>
+        <li><span>サークル名：</span><?php echo mno_pm_render_terms( $circle_terms ); ?></li>
+    </ul>
+    <?php echo $buy_button; ?>
 </div>

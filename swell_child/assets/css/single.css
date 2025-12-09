@@ -18,33 +18,23 @@ body.single {
   margin: 0;
 }
 
-/* 記事セクション全体グリッド（スマホ縦並びレイアウト） */
-.mno-pm-article {
-  display: grid;
-  gap: 16px;
+/* 各コンテンツブロック（フラットな積み重ねレイアウト） */
+.mno-pm-article__gallery,
+.mno-pm-article__voice,
+.mno-pm-article__purchase,
+.mno-pm-circle-info,
+.mno-pm-highlights,
+.mno-data-section,
+.mno-pm-track-section,
+.mno-pm-summary {
+  margin-bottom: 24px;
   max-width: 100%;
   overflow-x: hidden;
-}
-
-/* 各セクションカード（スマホでのカード状表示と影） */
-.mno-pm-article__section {
-  background: #ffffff;
-  border-radius: 12px;
-  padding: 24px;
-  box-shadow: 0 12px 32px rgba(17, 24, 39, 0.08);
-  max-width: 100%;
-  overflow-x: hidden;
-	 box-sizing: border-box;
-}
-
-/* ギャラリー以外のセクション余白をスマホ基準でリセット */
-.mno-pm-article__section:not(.mno-pm-article__gallery) {
-  margin-left: 0;
-  margin-right: 0;
+  box-sizing: border-box;
 }
 
 /* 価格周りのコンテナと要素（スマホでの横はみ出し防止） */
-.mno-pm-article__section.mno-pm-article__price,
+.mno-pm-article__purchase,
 .mno-pm-price,
 .mno-pm-price * {
   max-width: 100%;
@@ -53,7 +43,11 @@ body.single {
 }
 
 /* セクション見出し（スマホでも視認性を保つ左ライン） */
-.mno-pm-article__section h2 {
+.mno-pm-circle-info h2,
+.mno-pm-highlights h2,
+.mno-data-section h2,
+.mno-pm-track-section h2,
+.mno-pm-summary h2 {
   font-size: 1.4rem;
   margin-bottom: 16px;
   border-left: 4px solid #f38ad5;
@@ -138,26 +132,26 @@ body.single {
 
 /* スマホ表示用：ギャラリーを画面幅いっぱいに広げる調整 */
 @media (max-width: 768px) {
-  .mno-pm-article__section.mno-pm-article__gallery {
+  .mno-pm-article__gallery {
     margin-left: calc(50% - 50vw);
     margin-right: calc(50% - 50vw);
     padding-left: 0;
     padding-right: 0;
-	max-width: none;
+        max-width: none;
   }
 
-  .mno-pm-article__section.mno-pm-article__gallery .mno-gallery {
+  .mno-pm-article__gallery .mno-gallery {
     width: 100vw;
-	margin-left: calc(50% - 50vw);
+        margin-left: calc(50% - 50vw);
     margin-right: calc(50% - 50vw);
     border-radius: 6px;
   }
 
-  .mno-pm-article__section.mno-pm-article__gallery .mno-gallery-slide {
+  .mno-pm-article__gallery .mno-gallery-slide {
     padding: 0;
   }
 
-  .mno-pm-article__section.mno-pm-article__gallery .mno-gallery img {
+  .mno-pm-article__gallery .mno-gallery img {
     width: 100vw;
     border-radius: 6px;
   }
@@ -376,20 +370,6 @@ body.single {
   cursor: not-allowed;
   box-shadow: none;
   background: #9ca3af;
-}
-
-/* カード風スタイルの除去（シングルページのみ反映） */
-body.single .mno-pm-article__section {
-  background: transparent !important;
-  border: none !important;
-  border-radius: 0 !important;
-  box-shadow: none !important;
-  padding: 0 !important;
-  margin: 12px 0;
-}
-
-body.single .mno-pm-article {
-  gap: 12px;
 }
 
 body.single .mno-pm-slider,
@@ -887,10 +867,6 @@ body.single .mno-pm-track-list__item {
 
 /* スマホ表示用：全体余白とボイス表レイアウトを最適化 */
 @media (max-width: 768px) {
-  .mno-pm-article__section {
-    padding: 20px;
-  }
-
   .mno-dialogue-block {
     padding: 20px;
   }
