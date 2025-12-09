@@ -17,13 +17,6 @@ body {
   margin: 0;
 }
 
-/* コンテナ */
-.mno-container {
-  padding: 24px 12px;
-  max-width: 1024px;
-  margin: 0 auto;
-}
-
 /* 並び順セレクト */
 .mno-sort {
   text-align: right;
