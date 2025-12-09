@@ -5,9 +5,9 @@ if ( have_posts() ) :
   while ( have_posts() ) : the_post();
     $custom_title = get_post_meta( get_the_ID(), '_mpm_custom_title', true );
     $display_title = '' !== $custom_title ? $custom_title : get_the_title();
-    $title_markup  = '<section class="mno-pm-article__section mno-title-block">';
+    $title_markup  = '<div class="mno-title-block">';
     $title_markup .= '<h1 class="mno-single-title">' . esc_html( $display_title ) . '</h1>';
-    $title_markup .= '</section>';
+    $title_markup .= '</div>';
 
     if ( function_exists( 'mno_pm_render_single_template' ) ) {
       $single_content = mno_pm_render_single_template( get_the_ID() );
@@ -16,7 +16,7 @@ if ( have_posts() ) :
         $original_content = $single_content;
 
         $single_content = preg_replace(
-          '/(<section\s+class="mno-pm-article__section\s+mno-pm-article__gallery"[^>]*>.*?<\/section>)/s',
+          '/(<div\s+class="mno-pm-article__gallery"[^>]*>.*?<\/div>)/s',
            '$1' . $title_markup,
           $single_content,
           1
