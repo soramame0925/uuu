@@ -1,21 +1,6 @@
 /* 投稿ページ全体ラッパー（スマホ基準で横幅と横スクロールを抑制） */
 .single,
-body.single,
-.mno-single {
-  width: 100%;
-  max-width: 100%;
-  overflow-x: hidden;
-}
-
-/* シングルページの内側コンテナ（スマホでも中央に収める余白設定） */
-.mno-single {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 24px 16px 80px;
-}
-
-/* 汎用ラッパー（コンテンツが横に溢れないよう幅制御） */
-.mno-container {
+body.single {
   width: 100%;
   max-width: 100%;
   overflow-x: hidden;
@@ -902,10 +887,6 @@ body.single .mno-pm-track-list__item {
 
 /* スマホ表示用：全体余白とボイス表レイアウトを最適化 */
 @media (max-width: 768px) {
-  .mno-single {
-    padding: 16px 12px 64px;
-  }
-
   .mno-pm-article__section {
     padding: 20px;
   }
@@ -1090,8 +1071,6 @@ html, body {
 }
 
 /* singleページ全体のコンテナを中央寄せ＋max幅制限 */
-.mno-single-wrapper,
-.mno-single-container,
 .single,
 .post {
   max-width: 100%;
