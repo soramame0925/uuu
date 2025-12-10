@@ -894,6 +894,16 @@ final class MNO_Post_Manager {
 
 MNO_Post_Manager::init();
 
+add_action( 'init', 'mno_pm_register_highlights_block' );
+
+function mno_pm_register_highlights_block() {
+    if ( ! function_exists( 'register_block_type' ) ) {
+        return;
+    }
+
+    register_block_type( __DIR__ . '/blocks/highlights' );
+}
+
 function mno_pm_render_single_template( $post_id = null ) {
     $post_id = $post_id ?: get_the_ID();
     if ( ! $post_id ) {
